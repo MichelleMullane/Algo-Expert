@@ -60,3 +60,27 @@ console.log(
   "Output solution 2: ",
   removeDuplicates2([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])
 );
+
+// Solution 3
+var removeDuplicates3 = function (nums) {
+  let left = 0;
+  let right = left + 1;
+
+  while (right < nums.length) {
+    if (nums[right] === nums[left]) {
+      right++;
+    } else {
+      left++;
+      nums[left] = nums[right];
+      right++;
+    }
+  }
+
+  return left + 1;
+}; 
+// This is O(n) time to iterate through an array of n values.  This solution beat 93% of users on Leetcode for runtime.  This uses O(1) memory to allocation for the left and right pointer variables.
+console.log("Expected result", 5);
+console.log(
+  "Output solution 3: ",
+  removeDuplicates3([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])
+);
