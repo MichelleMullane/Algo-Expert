@@ -9,7 +9,7 @@
 // point the current pointer to the next node (saved earlier)
 // return the previous pointer (new head)
 
-var reverseList = function (head) {
+var reverseList1 = function (head) {
   let current = head;
   let previous = null;
 
@@ -21,3 +21,20 @@ var reverseList = function (head) {
   }
   return previous;
 };
+
+// I revisited this problem after several months.  The solution is very similar to the one above.
+var reverseList2 = function (head) {
+  let newNext = null;
+  let current = head;
+
+  while (current) {
+    let oldNext = current.next;
+    current.next = newNext;
+    newNext = current;
+    current = oldNext;
+  }
+
+  return newNext;
+};
+// Time complexity is O(n) to traverse a list of n nodes.
+// Space complexity if O(1) to store the pointer variables.
