@@ -29,3 +29,28 @@ const uncompress = (s) => {
 
 console.log("Expected result: ccaaat");
 console.log("Test result: ", uncompress("2c3a1t"));
+
+// We can improve on the solution above by pushing to an array rather than concatenating a string in the while loop.
+const uncompress2 = (s) => {
+  let response = [];
+  let left = 0;
+
+  for (let right = 0; right < s.length; right++) {
+    if (parseInt(s[right])) {
+      continue;
+    } else {
+      let num = s.slice(left, right);
+      let count = 0;
+
+      while (count < num) {
+        response.push(s[right]);
+        count++;
+      }
+      right++;
+      left = right;
+    }
+  }
+  return response.join("");
+};
+console.log("Expected result: ccaaat");
+console.log("Test result: ", uncompress2("2c3a1t"));
