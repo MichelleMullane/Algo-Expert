@@ -59,7 +59,7 @@ const getNodeValueRecursive2 = (head, index) => {
   if (head === null) return null;
   if (index === 0) return head.val;
 
-  return getNodeValueRecursive2(head.next, --index);
+  return getNodeValueRecursive2(head.next, index - 1);
 };
 // Time: O(N) to make N recursive calls for a list of N nodes
 // Space: O(N) for adding N calls to the call stack
