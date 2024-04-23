@@ -44,3 +44,29 @@ const zipperLists = (head1, head2) => {
 //Time: O(N + M) to iterate through lists of length N and M
 //Space: O(1) for a fixed number of variables
 console.log("Test result: ", zipperLists(a, x));
+
+//Reset the linked lists for testing
+a.next = b;
+b.next = c;
+c.next = null;
+
+x.next = y;
+y.next = z;
+z.next = null;
+
+const zipperListsRecursive = (head1, head2) => {
+  if (head1 === null && head2 === null) return null;
+
+  if (head1 === null) return head2;
+  if (head2 === null) return head1;
+
+  const next1 = head1.next;
+  const next2 = head2.next;
+  head1.next = head2;
+  head2.next = zipperListsRecursive(next1, next2);
+
+  return head1;
+};
+//Time: O(N + M) to iterate through lists of length N and M
+//Space: O(N + M) to add N + M calls to the callstack
+console.log("Test result: ", zipperListsRecursive(a, x));
