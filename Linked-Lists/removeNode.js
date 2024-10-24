@@ -51,6 +51,7 @@ const removeNodeRecursive = (head, targetVal) => {
 
   return head;
 };
-// Same time and space complexity as recursive solution above, but a bit simpler without passing additional variables.
+// Time complexity: O(n) to run n calls through the callstack based on the number of nodes in the linked list.
+// Space complexity: O(n) to add n calls to the callstack.
 console.log("Expected result: a -> b -> d");
-console.log("Test result solution 3: ", removeNodeRecursive(a, "c"));
+console.log("Test result solution 2: ", removeNodeRecursive(a, "c"));
