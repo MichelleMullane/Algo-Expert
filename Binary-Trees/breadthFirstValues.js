@@ -21,23 +21,22 @@ b.right = e;
 c.right = f;
 
 // Solution 1:
-const depthFirstValues = (root) => {
-  let stack = [root];
+const breadthFirstValues = (root) => {
+  if (root === null) return [];
   let values = [];
+  let queue = [root];
 
-  while (stack.length > 0) {
-    if (root === null) return [];
-
-    const current = stack.pop();
+  while (queue.length > 0) {
+    const current = queue.shift();
     values.push(current.val);
 
-    if (current.right != null) stack.push(current.right);
-    if (current.left != null) stack.push(current.left);
+    if (current.left != null) queue.push(current.left);
+    if (current.right != null) queue.push(current.right);
   }
 
   return values;
 };
 // Time complexity: O(N) to traverse N nodes of the input tree
 // Space complexity: O(N) to create a stack of N nodes based on the length of the input tree
-console.log("Expected result: ", ["a", "b", "d", "e", "c", "f"]);
-console.log("Test result: ", depthFirstValues(a));
+console.log("Expected result: ", ["a", "b", "c", "d", "e", "f"]);
+console.log("Test result: ", breadthFirstValues(a));
