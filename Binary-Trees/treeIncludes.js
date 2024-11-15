@@ -20,7 +20,7 @@ b.left = d;
 b.right = e;
 c.right = f;
 
-// Solution 1:
+// Solution 1: depth-first search
 const treeIncludes = (root, target) => {
   if (root === null) return false;
 
@@ -40,3 +40,24 @@ const treeIncludes = (root, target) => {
 // Space complexity: O(N) to create a stack of N nodes
 console.log("Expected result: ", true);
 console.log("Test result: ", treeIncludes(a, "e"));
+
+// Solution 2: breadth-first search
+const treeIncludes2 = (root, target) => {
+  if (root === null) return false;
+
+  let queue = [root];
+
+  while (queue.length > 0) {
+    const current = queue.shift();
+    if (current.val === target) return true;
+
+    if (current.left != null) queue.push(current.left);
+    if (current.right != null) queue.push(current.right);
+  }
+
+  return false;
+};
+// Time complexity: O(N^2) to visit N nodes of the binary tree and perform shift on N nodes
+// Space complexity: O(N) to create a stack of N nodes
+console.log("Expected result: ", true);
+console.log("Test result: ", treeIncludes2(a, "e"));
