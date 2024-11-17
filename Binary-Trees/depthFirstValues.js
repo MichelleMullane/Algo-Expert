@@ -41,3 +41,17 @@ const depthFirstValues = (root) => {
 // Space complexity: O(N) to create a stack of N nodes based on the length of the input tree
 console.log("Expected result: ", ["a", "b", "d", "e", "c", "f"]);
 console.log("Test result: ", depthFirstValues(a));
+
+// Solution 1: Recursive
+const depthFirstValues2 = (root) => {
+  if (root === null) return [];
+
+  const leftValues = depthFirstValues2(root.left);
+  const rightValues = depthFirstValues2(root.right);
+
+  return [root.val, ...leftValues, ...rightValues];
+};
+// Time complexity: O(N) to call the function recursively based on the number of nodes in the input tree
+// Space complexity: O(N) to create an array based on the number of nodes from the input tree
+console.log("Expected result: ", ["a", "b", "d", "e", "c", "f"]);
+console.log("Test result: ", depthFirstValues2(a));
