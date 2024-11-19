@@ -61,3 +61,15 @@ const treeIncludes2 = (root, target) => {
 // Space complexity: O(N) to create a stack of N nodes
 console.log("Expected result: ", true);
 console.log("Test result: ", treeIncludes2(a, "e"));
+
+// Solution 3: Recursive Solution
+const treeIncludes3 = (root, target) => {
+  if (root === null) return false;
+  if (root.val === target) return true;
+
+  return treeIncludes3(root.left, target) || treeIncludes3(root.right, target);
+};
+// Time complexity: O(N) to call the function recursively N times based on the number of nodes in the input truee
+// Space complexity: O(N) to add N calls to the callstack
+console.log("Expected result: ", true);
+console.log("Test result: ", treeIncludes3(a, "e"));
