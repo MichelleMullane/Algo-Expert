@@ -59,3 +59,17 @@ const treeMinValue2 = (root) => {
 // Space complexity: O(N) to make a stack of N nodes based on the input length of the binary tree
 console.log("Expected result: ", -2);
 console.log("Test result: ", treeMinValue2(a));
+
+// Solution 3: Recursive depth-first
+const treeMinValue3 = (root, minValue = Infinity) => {
+  if (root === null) return Infinity;
+
+  const leftMin = treeMinValue3(root.left);
+  const rightMin = treeMinValue3(root.right);
+
+  return Math.min(root.val, leftMin, rightMin);
+};
+// Time complexity: O(N) to call the function recursively based on the number of nodes in the input tree
+// Space complexity: O(N) to add N functions to the callstack
+console.log("Expected result: ", -2);
+console.log("Test result: ", treeMinValue3(a));
