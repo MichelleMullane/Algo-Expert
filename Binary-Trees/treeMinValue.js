@@ -10,7 +10,7 @@ class Node {
 const a = new Node(3);
 const b = new Node(11);
 const c = new Node(4);
-const d = new Node(4);
+const d = new Node(5);
 const e = new Node(-2);
 const f = new Node(1);
 
