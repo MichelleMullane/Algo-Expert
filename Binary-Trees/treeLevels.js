@@ -50,3 +50,59 @@ const treeLevels = (root) => {
 // Space complexity: O(N) to create the levels and stack arrays of N nodes based on the size of the input binary tree
 console.log("Expected result: ", [["a"], ["b", "c"], ["d", "e", "f"]]);
 console.log("Test result: ", treeLevels(a));
+
+// Solution 2: Breadth-first iterative
+const treeLevels2 = (root) => {
+  if (root === null) return [];
+
+  let levels = [];
+  let queue = [{ node: root, level: 0 }];
+
+  while (queue.length > 0) {
+    const { node, level } = queue.shift();
+
+    if (levels[level]) {
+      levels[level].push(node.val);
+    } else {
+      levels.push([node.val]);
+    }
+
+    if (node.left != null) {
+      queue.push({ node: node.left, level: level + 1 });
+    }
+
+    if (node.right != null) {
+      queue.push({ node: node.right, level: level + 1 });
+    }
+  }
+
+  return levels;
+};
+// Time complexity: O(N^2) to iterate through N nodes of the input binary tree and perform shift on each node
+// Space complexity: O(N) to build the levels and queue arrays based on the length of the input binary tree N
+console.log("Expected result: ", [["a"], ["b", "c"], ["d", "e", "f"]]);
+console.log("Test result: ", treeLevels2(a));
+
+// Solution 3: Recursive (depth-first)
+const treeLevels3 = (root) => {
+  const levels = [];
+  fillLevels(root, levels, 0);
+  return levels;
+};
+
+const fillLevels = (root, levels, level) => {
+  if (root === null) return [];
+
+  if (levels[level]) {
+    levels[level].push(root.val);
+  } else {
+    levels.push([root.val]);
+  }
+
+  fillLevels(root.left, levels, level + 1);
+  fillLevels(root.right, levels, level + 1);
+};
+// Time complexity: O(N) to make N recursive calls based on the length of the input binary tree
+// Space complexity: O(N) to add N calls to the callstack and create the levels return array
+console.log("Expected result: ", [["a"], ["b", "c"], ["d", "e", "f"]]);
+console.log("Test result: ", treeLevels3(a));
